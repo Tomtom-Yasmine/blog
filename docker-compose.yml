@@ -12,7 +12,8 @@ services:
       - NODE_ENV=development
       - PORT=3000
     networks:
-      - default
+      - backend
+      - frontend
     ports:
       - "6000:3000"
     secrets:
@@ -36,7 +37,7 @@ services:
       - "6010:5432"
     secrets:
       - postgres-db
-      - postgres-username
+      - postgres-usernames
       - postgres-password
     volumes:
       - "postgres-data:/var/lib/postgresql/data"
@@ -49,10 +50,10 @@ networks:
 secrets:
   postgres-db:
     file: ./secrets/postgres-db
-  postgres-username:
-    file: ./secrets/postgres-username
   postgres-password:
     file: ./secrets/postgres-password
+  postgres-username:
+    file: ./secrets/postgres-username
   jwt-key:
     file: ./secrets/jwt-key
 
