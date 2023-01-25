@@ -1,0 +1,20 @@
+{
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "**/exclude.*"
+    ],
+    "compilerOptions": {
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "lib": [
+            "ESNext"
+        ],
+        "sourceMap": true,
+        "strict": true,
+        "typeRoots": [
+            "src/types"
+        ]
+    }
+}
