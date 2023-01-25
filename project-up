@@ -1,0 +1,1 @@
+docker compose -p ipssi-blog up -d --remove-orphans
