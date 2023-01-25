@@ -19,6 +19,7 @@ services:
       - postgres-db
       - postgres-username
       - postgres-password
+      - jwt-key
     volumes:
       - "./app/node:/app"
 
@@ -52,6 +53,8 @@ secrets:
     file: ./secrets/postgres-username
   postgres-password:
     file: ./secrets/postgres-password
+  jwt-key:
+    file: ./secrets/jwt-key
 
 volumes:
   postgres-data:
