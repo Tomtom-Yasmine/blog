@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  node:
+    build:
+      context: ./build/node
+    restart: always
+    tty: true
+    stdin_open: true
+    command: bash
+    environment:
+    - NODE_ENV=development
+    networks:
+    - default
+    ports:
+    - "6000:3000"
+    volumes:
+    - "./app/node:/app"
+
+  mongo:
+    image: mongo:latest
+    environment:
+    - MONGO_INITDB_DATABASE=blog-db
+    - MONGO_INITDB_ROOT_USERNAME_FILE=/run/secrets/mongo-root-username
+    - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/mongo-root-password
+    networks:
+    - default
+    ports:
+    - "6010:27017"
+    secrets:
+    - mongo-root-username
+    - mongo-root-password
+    volumes:
+    - "mongo-data:/data/db"
+
+
+
+networks:
+  default:
+
+
+
+secrets:
+  mongo-root-username:
+    file: ./secrets/mongo-root-username
+  mongo-root-password:
+    file: ./secrets/mongo-root-password
+
+
+
+volumes:
+  mongo-data:
